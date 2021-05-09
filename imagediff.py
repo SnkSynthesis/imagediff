@@ -41,15 +41,16 @@ def index():
             )
             return redirect(request.url)
 
-        output = Image.new("RGB", (image1.width, image1.height))
+        output = Image.new("RGBA", (image1.width, image1.height))
 
         image1_arr = np.asarray(image1)
         image2_arr = np.asarray(image2)
+        image_black_and_white_arr = np.asarray(image1.convert("L").convert("RGB"))
 
-        for y, (row1, row2) in enumerate(zip(image1_arr, image2_arr)):
-            for x, (color1, color2) in enumerate(zip(row1, row2)):
+        for y, (row1, row2, row3) in enumerate(zip(image1_arr, image2_arr, image_black_and_white_arr)):
+            for x, (color1, color2, color3) in enumerate(zip(row1, row2, row3)):
                 if np.array_equal(color1, color2):
-                    output.putpixel((x, y), tuple(color1))
+                    output.putpixel((x, y), tuple([color3[0], color3[1], color3[2], 100]))
                 else:
                     output.putpixel(
                         (x, y), ImageColor.getrgb(request.form["highlight-color"])
@@ -60,6 +61,7 @@ def index():
             "image1_data": save_img_to_str(image1),
             "image2_data": save_img_to_str(image2),
             "diff_data": save_img_to_str(output),
+            "highlight_color": request.form["highlight-color"]
         }
         return render_template("index.html", **context)
 
