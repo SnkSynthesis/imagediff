@@ -72,6 +72,14 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        img {
+            box-shadow: 0px 0px 5px 3px lightgrey;
+        }
+        
+        ul > * {
+            color: red;
+        }
     </style>
 </head>
 
@@ -89,7 +97,11 @@
             </div>
             <div>
                 <label>Highlight color</label>
-                <input type="color" name="highlight-color">
+                {% if highlight_color %}
+                    <input type="color" name="highlight-color" value="{{ highlight_color }}">
+                {% else %}
+                    <input type="color" name="highlight-color">
+                {% endif %}
             </div>
             <div style="text-align: center"><input type="submit" value="Get Diff"></div>
         </form>
@@ -110,12 +122,11 @@
         </div>
     {% endif %}
 
-
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
                 {% for message in messages %}
-                <li>{{ message }}</li>
+                    <li>{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
