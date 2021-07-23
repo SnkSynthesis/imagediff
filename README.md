@@ -1,6 +1,6 @@
 # Image Diff
 
-Highlights the difference between two images.
+Highlights the difference between two images using [Flask](https://flask.palletsprojects.com/en/2.0.x/).
 
 ## How to run
 
