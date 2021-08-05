@@ -8,4 +8,5 @@ Highlights the difference between two images using [Flask](https://flask.pallets
 2. Run it: `python imagediff.py`
 3. Open http://127.0.0.1:5000 in browser
 
+### Screenshot: (Notice the difference)
 ![Screenshot](screenshot.png)
