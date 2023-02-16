@@ -5,4 +5,4 @@ Jinja2==3.0.1
 MarkupSafe==2.0.1
 numpy==1.21.0
 Pillow==9.3.0
-Werkzeug==2.0.1
+Werkzeug==2.2.3
